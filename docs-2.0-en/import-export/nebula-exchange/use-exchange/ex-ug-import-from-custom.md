@@ -1,4 +1,4 @@
-# Import data from a custom data source
+# Import data from custom data sources
 
 This topic provides an example to illustrate how to use Exchange to import a custom-type data source into {{nebula.name}}.
 
