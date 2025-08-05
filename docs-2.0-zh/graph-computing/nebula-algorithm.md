@@ -9,7 +9,7 @@ NebulaGraph Algorithm 版本和 {{nebula.name}} 内核的版本对应关系如�
 | {{nebula.name}} 版本|NebulaGraph Algorithm 版本|
 |:---|:---|
 |  nightly         |  3.0-SNAPSHOT |
-| 3.0.0 ~ 3.6.x      |  3.x.0        |
+| 3.0.0 ~ 3.8.x      |  3.x.0        |
 | 2.6.x            |  2.6.x        | 
 | 2.5.0、2.5.1      |  2.5.0        | 
 | 2.0.0、2.0.1      |  2.1.0        |
@@ -21,9 +21,9 @@ NebulaGraph Algorithm 版本和 {{nebula.name}} 内核的版本对应关系如�
 
 -  {{nebula.name}} 服务已经部署并启动。详细信息，参考 [{{nebula.name}} 安装部署](../4.deployment-and-installation/1.resource-preparations.md "点击前往 {{nebula.name}} 安装部署")。
 
-- Spark 版本为 2.4.x。
+- 已安装 Spark2.4 或者 3.x
 
-- Scala 版本为 2.11。
+- 已安装 Scala 2.11（对应 Spark 2.4）或 2.12（对应 Spark 3.x）。
 
 - （可选）如果用户需要在 Github 中克隆最新的 Algorithm，并自行编译打包，可以选择安装 [Maven](https://maven.apache.org/download.cgi)。
 
@@ -84,6 +84,12 @@ NebulaGraph Algorithm 实现图计算的流程如下：
 
   ```bash
   $ git clone -b {{algorithm.branch}} https://github.com/vesoft-inc/nebula-algorithm.git
+  ```
+
+  如果是在 Spark 3.x 环境中运行 Algorithm，请使用 spark3 分支：
+
+  ```bash
+  $ git clone -b spark3 https://github.com/vesoft-inc/nebula-algorithm.git
   ```
 
 2. 进入目录`nebula-algorithm`。

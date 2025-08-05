@@ -9,7 +9,7 @@ The correspondence between the NebulaGraph Algorithm release and the NebulaGraph
 |NebulaGraph |NebulaGraph Algorithm |
 |:---|:---|
 |  nightly         |  3.0-SNAPSHOT |
-| 3.0.0 ~ 3.4.x      |  3.x.0        |
+| 3.0.0 ~ 3.8.x      |  3.x.0        |
 | 2.6.x            |  2.6.x        | 
 | 2.5.0、2.5.1      |  2.5.0        | 
 | 2.0.0、2.0.1      |  2.1.0        |
@@ -20,9 +20,9 @@ Before using the NebulaGraph Algorithm, users need to confirm the following info
 
 - The NebulaGraph services have been deployed and started. For details, see [NebulaGraph Installation](../4.deployment-and-installation/1.resource-preparations.md).
 
-- The Spark version is 2.4.x.
+- The Spark version is 2.4 or 3.x is installed.
 
-- The Scala version is 2.11.
+- The Scala version is 2.11 (for Spark 2.4) or 2.12 (for Spark 3.x) is installed.
 
 - (Optional) If users need to clone, compile, and package the latest Algorithm in Github, install [Maven](https://maven.apache.org/download.cgi).
 
@@ -85,7 +85,13 @@ For detailed implementation methods, see [Scala file](https://github.com/vesoft-
   $ git clone -b {{algorithm.branch}} https://github.com/vesoft-inc/nebula-algorithm.git
   ```
 
-2. Enter the directory `nebula-algorithm`.
+  If running Algorithm in a Spark 3.x environment, use the spark3 branch:
+
+  ```bash
+  $ git clone -b spark3 https://github.com/vesoft-inc/nebula-algorithm.git
+  ```
+
+1. Enter the directory `nebula-algorithm`.
 
   ```bash
   $ cd nebula-algorithm

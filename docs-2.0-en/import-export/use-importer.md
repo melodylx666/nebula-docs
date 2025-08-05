@@ -181,7 +181,7 @@ client:
 |`client.ssl.caPath`|-|No| Specifies the storage path for the CA root certificate.</br>This parameter is required when SSL authentication is enabled.|
 |`client.ssl.insecureSkipVerify`|`false`|No|Specifies whether the client skips verifying the server's certificate chain and hostname. If set to `true`, any certificate chain and hostname provided by the server is accepted.|
 |`client.concurrencyPerAddress`|`10`|No| The number of concurrent client connections for a single graph service.|
-|`client.retryInitialInterval`|`1s`|No| Reconnect interval time.|
+|`client.reconnectInitialInterval`|`1s`|No| Reconnect interval time.|
 |`client.retry`|`3`|No| The number of retries for failed execution of the nGQL statement.|
 |`client.retryInitialInterval`|`1s`|No| Retry interval time.|
 
@@ -219,8 +219,7 @@ manager:
 |Parameter|Default value|Required|Description|
 |:---|:---|:---|:---|
 |`manager.spaceName`|-|Yes| Specifies the NebulaGraph space to import the data into. Do not support importing multiple map spaces at the same time.|
-|`manager.batch`|`128`|No| The batch size for executing statements (global configuration).
-</br>Setting the batch size individually for a data source can using the parameter `sources.batch` below.|
+|`manager.batch`|`128`|No| The batch size for executing statements (global configuration).</br>Setting the batch size individually for a data source can using the parameter `sources.batch` below.|
 |`manager.readerConcurrency`|`50`|No| The number of concurrent reads of the data source by the reader.|
 |`manager.importerConcurrency`|`512`|No| The number of concurrent nGQL statements generated to be executed, and then will call the client to execute these nGQL statements.|
 |`manager.statsInterval`|`10s`|No| The time interval for printing statistical information|
@@ -406,7 +405,7 @@ The configuration mainly includes the following parts:
 |`sources.csv.withHeader`   |`false`| No | Whether to ignore the first record in the CSV file.          |  
 |`sources.csv.lazyQuotes`   |`false`| No | Whether to allow lazy quotes. If `lazyQuotes` is true, a quote may appear in an unquoted field and a non-doubled quote may appear in a quoted field.    |  
 |`sources.tags.name`   |-| Yes | The tag name.         |  
-|`sources.tags.mode`   |`INSERT`| No | Batch operation types, including insert, update and delete. Optional values are `INSERT`, `UPDATE` and `DELETE`.         |  
+|`sources.tags.mode`   |`INSERT`| No | Batch operation types, including insert, update and delete. Optional values are `INSERT`, `UPDATE` and `DELETE` (The `DELETE` type is supported starting from NebulaGraph importer version 4.1.0).         |  
 |`sources.tags.filter.expr`   |-| No | Filter the data and only import if the filter conditions are met. </br>Supported comparison characters are `==`, `! =`, `<`, `>`, `<=` and `>=`. </br>Logical operators supported are `not` (!) , `and` (&&) and `or` (\|\|). </br>For example `(Record[0] == "Mahinda" or Record[0] == "Michael") and Record[3] == "male"`.         |  
 |`sources.tags.id.type`   |`STRING`| No |  The type of the VID.       |  
 |`sources.tags.id.function`   |-| No | Functions to generate the VID. Currently, only function `hash` are supported.         |  
@@ -421,7 +420,7 @@ The configuration mainly includes the following parts:
 |`sources.tags.props.alternativeIndices`   |-| No | Ignored when `nullable` is `false`. The property is fetched from records according to the indices in order until not equal to `nullValue`.         |  
 |`sources.tags.props.defaultValue`   |-| No | Ignored when `nullable` is `false`. The property default value, when all the values obtained by `index` and `alternativeIndices` are `nullValue`.         |  
 |`sources.edges.name`   |-| Yes | The edge type name.          |  
-|`sources.edges.mode`   |`INSERT`| No | Batch operation types, including insert, update and delete. Optional values are `INSERT`, `UPDATE` and `DELETE`.       |  
+|`sources.edges.mode`   |`INSERT`| No | Batch operation types, including insert, update and delete. Optional values are `INSERT`, `UPDATE` and `DELETE` (The `DELETE` type is supported starting from NebulaGraph importer version 4.1.0).       |  
 |`sources.edges.filter.expr`   |-| No | Filter the data and only import if the filter conditions are met. </br>Supported comparison characters are `==`, `! =`, `<`, `>`, `<=` and `>=`. </br>Logical operators supported are `not` (!) , `and` (&&) and `or` (\|\|). </br>For example `(Record[0] == "Mahinda" or Record[0] == "Michael") and Record[3] == "male"`.          |  
 |`sources.edges.src.id.type`   |`STRING`| No |  The data type of the VID at the starting vertex on the edge.       |  
 |`sources.edges.src.id.index`   |-| Yes | The column number in the data file corresponding to the VID at the starting vertex on the edge.         |  
